@@ -1,5 +1,6 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { carsReducer } from "./cars/carsSlice";
+import { filterReducer } from "./filter/filterSlice";
 // import {
 //   persistReducer,
 //   persistStore,
@@ -12,7 +13,10 @@ import { carsReducer } from "./cars/carsSlice";
 // } from "redux-persist";
 // import storage from "redux-persist/lib/storage";
 
-const rootReducer = carsReducer;
+const rootReducer = combineReducers({
+  cars: carsReducer,
+  filter: filterReducer,
+});
 
 export const store = configureStore({
   reducer: rootReducer,
