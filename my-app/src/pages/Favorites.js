@@ -5,6 +5,9 @@ import Modal from "react-modal";
 import { useState } from "react";
 import { Container, FavCarsContainer } from "../Container.styled";
 import { FavCarInfoForm } from "../../src/components/Favorites/FavCarInfoForm/FavCarInfoForm";
+import { useSelector } from "react-redux";
+import { selectError, selectIsLoading } from "../../src/redux/selectors";
+import { Loader } from "../../src/components/Loader/Loader";
 
 Modal.setAppElement("#root");
 
@@ -13,7 +16,9 @@ const Favourites = () => {
   const [favCars, setFavCars] = useState(
     JSON.parse(localStorage.getItem(common.LS_CARS)) ?? []
   );
-  console.log(favCars);
+
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
 
   const onRemovingFromFavs = (carToRemove) => {
     const updatedFavCars = favCars.filter((car) => car.id !== carToRemove.id);
@@ -31,6 +36,7 @@ const Favourites = () => {
 
   return (
     <Container>
+      {isLoading && !error && <Loader />}
       <FavCarsContainer>
         {favCars.map((car) => (
           <li key={car.id}>

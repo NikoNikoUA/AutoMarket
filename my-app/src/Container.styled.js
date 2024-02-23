@@ -23,3 +23,8 @@ export const FavCarsContainer = styled.ul`
   justify-content: center;
   flex-wrap: wrap;
 `;
+
+export const NotFoundMessage = styled.div`
+  color: red;
+  font-size: 18px;
+`;

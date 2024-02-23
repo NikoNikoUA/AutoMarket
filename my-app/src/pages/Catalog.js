@@ -10,10 +10,14 @@ import { Loader } from "../../src/components/Loader/Loader";
 import { Container, ComponentsContainer } from "../../src/Container.styled";
 import Filter from "../../src/components/Catalog/Filter/Filter";
 import { filterValue } from "../../src/redux/filter/filterSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchCars } from "../../src/redux/cars/operations";
+import { LoadMore } from "../../src/components/LoadMore/LoadMore";
 
 const Catalog = () => {
+  const [loadMore, setLoadMore] = useState(false);
+  const [page, setPage] = useState(1);
+
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const cars = useSelector(selectGetCars);
@@ -21,21 +25,23 @@ const Catalog = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (filter.make === "all" || filter.make === null) {
-      dispatch(fetchCars());
-    }
-  }, [dispatch, filter.make]);
+    dispatch(fetchCars(page));
+    setLoadMore(page < 1);
+  }, [dispatch, page]);
+
+  const clickLoadMore = () => {
+    setPage((prevState) => prevState + 1);
+    setLoadMore(true);
+  };
 
   const onSubmit = (value) => {
     dispatch(filterValue(value));
   };
 
-  const visibleCarsMake = cars.filter((car) => {
-    if (filter.make === "all") {
-      return true;
-    }
-    return car.make.toLowerCase() === filter.make;
-  });
+  const visibleCarsMake =
+    filter.make && filter.make !== "all"
+      ? cars.filter((car) => car.make.toLowerCase() === filter.make)
+      : cars;
 
   return (
     <Container>
@@ -43,6 +49,7 @@ const Catalog = () => {
       <ComponentsContainer>
         <Filter onSubmit={onSubmit} />
         <CarsList visibleCarsMake={visibleCarsMake} />
+        {loadMore && <LoadMore clickLoadMore={clickLoadMore} />}
       </ComponentsContainer>
     </Container>
   );

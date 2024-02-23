@@ -1,13 +1,13 @@
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-// import { useSelector } from "react-redux";
-// import { selectGetCars } from "../../../../src/redux/selectors";
-const schema = Yup.object().shape({});
+
+const schema = Yup.object().shape({
+  make: Yup.string(),
+  price: Yup.number(),
+  mileage: Yup.number(),
+});
 
 const Filter = ({ onSubmit }) => {
-  // const cars = useSelector(selectGetCars);
-  // const carBrands = cars.map((car) => car.make);
-
   return (
     <Formik
       initialValues={{
