@@ -1,24 +1,59 @@
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-
+// import { useSelector } from "react-redux";
+// import { selectGetCars } from "../../../../src/redux/selectors";
 const schema = Yup.object().shape({});
 
-const Filter = () => {
+const Filter = ({ onSubmit }) => {
+  // const cars = useSelector(selectGetCars);
+  // const carBrands = cars.map((car) => car.make);
+
   return (
     <Formik
       initialValues={{
-        make: "",
+        make: "all",
         price: "",
         mileage: "",
       }}
       validationSchema={schema}
       onSubmit={(values, action) => {
+        onSubmit(values);
         console.log(values);
+        action.resetForm();
       }}
     >
       <Form>
-        <label>Car brand</label>
-        <Field name="make" placeholder="Enter the text" focus />
+        <label htmlFor="make">Car brand</label>
+        <Field name="make" as="select" placeholder="Enter the text">
+          {/* <option>Enter the text</option>
+          {carBrands.map((brand, index) => (
+            <option key={index} value={brand}>
+              {brand}
+            </option>
+          ))} */}
+          <option value="all">All</option>
+          <option value="buick">Buick</option>
+          <option value="volvo">Volvo</option>
+          <option value="hummer">HUMMER</option>
+          <option value="subary">Subaru</option>
+          <option value="mitsubishi">Mitsubishi</option>
+          <option value="nissan">Nissan</option>
+          <option value="lincoln">Lincoln</option>
+          <option value="gmc">GMC</option>
+          <option value="hyundai">Hyundai</option>
+          <option value="mini">MINI</option>
+          <option value="bentley">Bentley</option>
+          <option value="mercedes-benz">Mercedes-Benz</option>
+          <option value="aston martin">Aston Martin</option>
+          <option value="pontiac">Pontiac</option>
+          <option value="lamborghini">Lamborghini</option>
+          <option value="audi">Audi</option>
+          <option value="bmw">BMW</option>
+          <option value="chevrolet">Chevrolet</option>
+          <option value="chrysler">Chrysler</option>
+          <option value="kia">Kia</option>
+          <option value="land rover">Land Rover</option>
+        </Field>
 
         <label>Price/ 1 hour</label>
         <Field name="price" placeholder="To $" />
