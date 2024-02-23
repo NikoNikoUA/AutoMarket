@@ -26,7 +26,7 @@ const Catalog = () => {
 
   useEffect(() => {
     dispatch(fetchCars(page));
-    setLoadMore(page < 1);
+    // setLoadMore(page < 1);
   }, [dispatch, page]);
 
   const clickLoadMore = () => {
