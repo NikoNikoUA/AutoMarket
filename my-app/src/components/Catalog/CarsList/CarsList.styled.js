@@ -6,6 +6,6 @@ export const ListOfCars = styled.ul`
   column-gap: 29px;
   row-gap: 50px;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
 `;

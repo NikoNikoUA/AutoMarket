@@ -1,5 +1,13 @@
-import { Formik, Form, Field } from "formik";
+import { Formik } from "formik";
 import * as Yup from "yup";
+import {
+  ButtonSearch,
+  Label,
+  InputContainer,
+  Forma,
+  Input,
+  MilageInputs,
+} from "./Filter.styled";
 
 const schema = Yup.object().shape({
   make: Yup.string(),
@@ -13,56 +21,80 @@ const Filter = ({ onSubmit }) => {
       initialValues={{
         make: "all",
         price: "",
-        mileage: "",
+        mileageFrom: "",
+        mileageTo: "",
       }}
       validationSchema={schema}
       onSubmit={(values, action) => {
         onSubmit(values);
-        console.log(values);
         action.resetForm();
       }}
     >
-      <Form>
-        <label htmlFor="make">Car brand</label>
-        <Field name="make" as="select" placeholder="Enter the text">
-          {/* <option>Enter the text</option>
+      <Forma>
+        <InputContainer>
+          <Label htmlFor="make">Car brand</Label>
+          <Input
+            className="inputBrand"
+            name="make"
+            as="select"
+            placeholder="Enter the text"
+          >
+            {/* <option>Enter the text</option>
           {carBrands.map((brand, index) => (
             <option key={index} value={brand}>
               {brand}
             </option>
           ))} */}
-          <option value="all">All</option>
-          <option value="buick">Buick</option>
-          <option value="volvo">Volvo</option>
-          <option value="hummer">HUMMER</option>
-          <option value="subary">Subaru</option>
-          <option value="mitsubishi">Mitsubishi</option>
-          <option value="nissan">Nissan</option>
-          <option value="lincoln">Lincoln</option>
-          <option value="gmc">GMC</option>
-          <option value="hyundai">Hyundai</option>
-          <option value="mini">MINI</option>
-          <option value="bentley">Bentley</option>
-          <option value="mercedes-benz">Mercedes-Benz</option>
-          <option value="aston martin">Aston Martin</option>
-          <option value="pontiac">Pontiac</option>
-          <option value="lamborghini">Lamborghini</option>
-          <option value="audi">Audi</option>
-          <option value="bmw">BMW</option>
-          <option value="chevrolet">Chevrolet</option>
-          <option value="chrysler">Chrysler</option>
-          <option value="kia">Kia</option>
-          <option value="land rover">Land Rover</option>
-        </Field>
+            <option value="all">All</option>
+            <option value="buick">Buick</option>
+            <option value="volvo">Volvo</option>
+            <option value="hummer">HUMMER</option>
+            <option value="subary">Subaru</option>
+            <option value="mitsubishi">Mitsubishi</option>
+            <option value="nissan">Nissan</option>
+            <option value="lincoln">Lincoln</option>
+            <option value="gmc">GMC</option>
+            <option value="hyundai">Hyundai</option>
+            <option value="mini">MINI</option>
+            <option value="bentley">Bentley</option>
+            <option value="mercedes-benz">Mercedes-Benz</option>
+            <option value="aston martin">Aston Martin</option>
+            <option value="pontiac">Pontiac</option>
+            <option value="lamborghini">Lamborghini</option>
+            <option value="audi">Audi</option>
+            <option value="bmw">BMW</option>
+            <option value="chevrolet">Chevrolet</option>
+            <option value="chrysler">Chrysler</option>
+            <option value="kia">Kia</option>
+            <option value="land rover">Land Rover</option>
+          </Input>
+        </InputContainer>
 
-        <label>Price/ 1 hour</label>
-        <Field name="price" placeholder="To $" />
+        <InputContainer>
+          <Label htmlFor="price">Price/ 1 hour</Label>
+          <Input
+            className="inputPrice"
+            // as="select"
+            name="price"
+            placeholder="To $"
+          />
+        </InputContainer>
 
-        <label>Сar mileage / km</label>
-        <Field name="mileage" />
+        <InputContainer>
+          <Label htmlFor="mileageFrom">Сar mileage / km</Label>
+          <MilageInputs>
+            <Input
+              className="inputFrom"
+              name="mileageFrom"
+              placeholder="From"
+            />
+            <Label htmlFor="mileageTo"></Label>
+            <Input className="inputTo" name="mileageTo" placeholder="To" />
+          </MilageInputs>
+        </InputContainer>
 
-        <button type="submit">Search</button>
-      </Form>
+        <ButtonSearch type="submit">Search</ButtonSearch>
+      </Forma>
     </Formik>
   );
 };

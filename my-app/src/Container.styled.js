@@ -39,6 +39,8 @@ export const Container = styled.div`
   padding: 150px 128px;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  gap: 50px;
 `;
 
 export const ComponentsContainer = styled.div`
@@ -57,7 +59,7 @@ export const FavCarsContainer = styled.ul`
   column-gap: 29px;
   row-gap: 50px;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
 `;
 
