@@ -4,9 +4,9 @@ import { ListOfCars } from "./CarsList.styled";
 export const CarsList = ({ visibleCarsMake }) => {
   return (
     <ListOfCars>
-      {visibleCarsMake.map((car) => (
+      {visibleCarsMake.map((car, index) => (
         <li key={car.id}>
-          <CarCard car={car} />
+          <CarCard car={car} index={index} />
         </li>
       ))}
     </ListOfCars>
