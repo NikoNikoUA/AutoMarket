@@ -11,8 +11,9 @@ import { Container, ComponentsContainer } from "../../src/Container.styled";
 import Filter from "../../src/components/Catalog/Filter/Filter";
 import { filterValue } from "../../src/redux/filter/filterSlice";
 import { useEffect, useState } from "react";
-import { fetchCars } from "../../src/redux/cars/operations";
+import { fetchCars, LIMIT } from "../../src/redux/cars/operations";
 import { LoadMore } from "../../src/components/LoadMore/LoadMore";
+// import { useSearchParams } from "react-router-dom";
 
 const Catalog = () => {
   const [loadMore, setLoadMore] = useState(false);
@@ -25,17 +26,24 @@ const Catalog = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log("Fetching page:", page);
     dispatch(fetchCars(page));
-    // setLoadMore(page < 1);
   }, [dispatch, page]);
 
+  const totalNumberOfPages = Math.ceil(cars.length / LIMIT);
+  console.log("Total number of pages:", totalNumberOfPages);
+
   const clickLoadMore = () => {
-    setPage((prevState) => prevState + 1);
-    setLoadMore(true);
+    console.log("Click Load More. Current page:", page);
+    if (page < totalNumberOfPages) {
+      setLoadMore(true);
+      setPage(page + 1);
+    }
   };
 
   const onSubmit = (value) => {
     dispatch(filterValue(value));
+    setPage(1);
   };
 
   const visibleCarsMake =
@@ -49,7 +57,9 @@ const Catalog = () => {
       <ComponentsContainer>
         <Filter onSubmit={onSubmit} />
         <CarsList visibleCarsMake={visibleCarsMake} />
-        {loadMore && <LoadMore clickLoadMore={clickLoadMore} />}
+        {page < totalNumberOfPages && (
+          <LoadMore clickLoadMore={clickLoadMore} />
+        )}
       </ComponentsContainer>
     </Container>
   );
