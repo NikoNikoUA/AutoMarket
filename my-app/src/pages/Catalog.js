@@ -48,8 +48,11 @@ const Catalog = () => {
 
   const visibleCarsMake =
     filter.make && filter.make !== "all"
-      ? cars.filter((car) => car.make.toLowerCase() === filter.make)
+      ? cars.filter(
+          (car) => car.make.toLowerCase() === filter.make.toLowerCase()
+        )
       : cars;
+  console.log(visibleCarsMake);
 
   return (
     <Container>
@@ -57,7 +60,7 @@ const Catalog = () => {
       <ComponentsContainer>
         <Filter onSubmit={onSubmit} />
         <CarsList visibleCarsMake={visibleCarsMake} />
-        {page < totalNumberOfPages && (
+        {loadMore && page < totalNumberOfPages && (
           <LoadMore clickLoadMore={clickLoadMore} />
         )}
       </ComponentsContainer>

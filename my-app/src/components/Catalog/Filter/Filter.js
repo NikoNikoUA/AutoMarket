@@ -26,6 +26,7 @@ const Filter = ({ onSubmit }) => {
       }}
       validationSchema={schema}
       onSubmit={(values, action) => {
+        console.log(values);
         onSubmit(values);
         action.resetForm();
       }}
@@ -39,12 +40,6 @@ const Filter = ({ onSubmit }) => {
             as="select"
             placeholder="Enter the text"
           >
-            {/* <option>Enter the text</option>
-          {carBrands.map((brand, index) => (
-            <option key={index} value={brand}>
-              {brand}
-            </option>
-          ))} */}
             <option value="all">All</option>
             <option value="buick">Buick</option>
             <option value="volvo">Volvo</option>
@@ -81,7 +76,7 @@ const Filter = ({ onSubmit }) => {
         </InputContainer>
 
         <InputContainer>
-          <Label htmlFor="mileageFrom">Сar mileage / km</Label>
+          <Label htmlFor="mileageFrom">Car mileage / km</Label>
           <MilageInputs>
             <Input
               className="inputFrom"
