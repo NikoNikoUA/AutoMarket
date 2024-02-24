@@ -36,7 +36,7 @@ export const CarCard = ({ car, index }) => {
     address,
   } = car;
 
-  const city = address.split(", ").slice(-2);
+  const city = address?.split(", ").slice(-2);
   const firstFunc = functionalities[0];
   const editedFirstFunc = firstFunc.split(" ");
   const finalFunc = editedFirstFunc.splice(0, 1).join(" ");
@@ -76,7 +76,7 @@ export const CarCard = ({ car, index }) => {
         <p>{rentalPrice}</p>
       </FirstLineContainer>
       <InfoContainer>
-        <Item>{city[0].split(" ").splice(0, 3)}</Item>
+        <Item>{city[0]}</Item>
         <Item>{city[1]}</Item>
         <Item>{rentalCompany}</Item>
         <Item>{type}</Item>

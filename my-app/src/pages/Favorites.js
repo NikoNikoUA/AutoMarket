@@ -1,6 +1,6 @@
 import common from "../../src/common.json";
 import icons from "../../src/sprite.svg";
-import { CardContainer } from "../../src/components/Catalog/CarCard/CarCard.styled";
+// import { CardContainer } from "../../src/components/Catalog/CarCard/CarCard.styled";
 import Modal from "react-modal";
 import { useState } from "react";
 import { Container, FavCarsContainer } from "../Container.styled";
@@ -8,6 +8,16 @@ import { FavCarInfoForm } from "../../src/components/Favorites/FavCarInfoForm/Fa
 import { useSelector } from "react-redux";
 import { selectError, selectIsLoading } from "../../src/redux/selectors";
 import { Loader } from "../../src/components/Loader/Loader";
+import {
+  CardContainer,
+  Img,
+  Svg,
+  Span,
+  FirstLineContainer,
+  InfoContainer,
+  ButtonCard,
+  Item,
+} from "../../src/components/Catalog/CarCard/CarCard.styled";
 
 Modal.setAppElement("#root");
 
@@ -34,32 +44,45 @@ const Favourites = () => {
     setIsModalOpen(false);
   };
 
+  const city = favCars?.address?.split(", ")?.slice(-2);
+  const firstFunc = favCars?.functionalities?.[0];
+  const editedFirstFunc = firstFunc?.split(" ");
+  const finalFunc = editedFirstFunc?.splice(0, 1)?.join(" ");
+
   return (
     <Container>
       {isLoading && !error && <Loader />}
       <FavCarsContainer>
-        {favCars.map((car) => (
+        {favCars.map((car, index) => (
           <li key={car.id}>
             <CardContainer>
-              <img src={car.img} alt="car" height="274px" width="269px" />
-              <svg
+              <Img src={car.img} alt="car" height="274px" width="269px" />
+              <Svg
                 width="18px"
                 height="18px"
                 onClick={() => onRemovingFromFavs(car)}
               >
                 <use href={`${icons}#icon-heart`}></use>
-              </svg>
-              <p>{car.make}</p>
-              <p>{car.model}</p>
-              <p>{car.year}</p>
-              <p>{car.rentalPrice}</p>
-              <p>{car.address}</p>
-              <p>{car.rentalCompany}</p>
-              <p>{car.functionalities}</p>
-              <p>{car.type}</p>
-              <button type="button" onClick={openModal}>
+              </Svg>
+              <FirstLineContainer>
+                <p>
+                  {car.make}
+                  {index < 3 && <Span> {car.model}</Span>}, {car.year}
+                </p>
+                <p>{car.rentalPrice}</p>
+              </FirstLineContainer>
+              <InfoContainer>
+                <Item>{city?.[0]}</Item>
+                <Item>{city?.[1]}</Item>
+                <Item>{car.rentalCompany}</Item>
+                <Item>{car.type}</Item>
+                <Item>{car.model}</Item>
+                <Item>{car.year}</Item>
+                <Item>{finalFunc}</Item>
+              </InfoContainer>
+              <ButtonCard type="button" onClick={openModal}>
                 Learn more
-              </button>
+              </ButtonCard>
 
               <Modal
                 isOpen={isModalOpen}

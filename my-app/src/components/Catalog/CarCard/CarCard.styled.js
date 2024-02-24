@@ -65,7 +65,6 @@ export const ButtonCard = styled.button`
   gap: 0px;
   border-radius: 12px;
   padding: 12px 99px;
-  /* width: 274px; */
   height: 44px;
   background-color: ${(props) => props.theme.colors.mainColor};
   border: none;
