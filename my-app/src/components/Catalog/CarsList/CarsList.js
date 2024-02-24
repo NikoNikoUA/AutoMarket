@@ -6,7 +6,7 @@ export const CarsList = ({ visibleCarsMake }) => {
     <ListOfCars>
       {visibleCarsMake.map((car, index) => (
         <li key={car.id}>
-          <CarCard car={car} index={index} />
+          <CarCard car={car} key={car.id} index={index} />
         </li>
       ))}
     </ListOfCars>

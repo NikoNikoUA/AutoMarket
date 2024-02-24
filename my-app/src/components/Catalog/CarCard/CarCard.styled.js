@@ -17,9 +17,16 @@ export const Svg = styled.svg`
   position: absolute;
   top: 14px;
   right: 14px;
-  fill: none;
+  /* fill: none; */
   stroke-width: 1.5px;
-  stroke: rgba(255, 255, 255, 0.8);
+  /* stroke: rgba(255, 255, 255, 0.8); */
+
+  fill: ${(props) =>
+    props.isCarFavorite ? props.theme.colors.mainColor : "none"};
+  stroke: ${(props) =>
+    props.isCarFavorite
+      ? props.theme.colors.mainColor
+      : "rgba(255, 255, 255, 0.8)"};
 `;
 
 export const Span = styled.span`
