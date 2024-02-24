@@ -1,6 +1,7 @@
 import icons from "../../../sprite.svg";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
+
 import {
   CardContainer,
   Img,
@@ -10,6 +11,7 @@ import {
   InfoContainer,
   ButtonCard,
   Item,
+  CustomModal,
 } from "./CarCard.styled";
 import { CarInfoForm } from "../../../../src/components/Catalog/CarInfoForm/CarInfoForm";
 import { useSelector, useDispatch } from "react-redux";
@@ -93,13 +95,13 @@ export const CarCard = ({ car, index }) => {
         Learn more
       </ButtonCard>
 
-      <Modal
+      <CustomModal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
         contentLabel="Modal for CarInfo"
       >
-        <CarInfoForm car={car} closeModalWindow={closeModal} />
-      </Modal>
+        <CarInfoForm car={car} index={index} closeModalWindow={closeModal} />
+      </CustomModal>
     </CardContainer>
   );
 };

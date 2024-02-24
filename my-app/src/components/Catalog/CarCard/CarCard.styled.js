@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Modal from "react-modal";
 
 export const CardContainer = styled.div`
   width: 274px;
@@ -101,4 +102,19 @@ export const Item = styled.p`
       margin-right: 6px;
     }
   }
+`;
+
+export const CustomModal = styled(Modal)`
+  position: relative;
+  border-radius: 24px;
+  width: 541px;
+  height: 752px;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  padding: 40px;
+  border: 1px solid ${(props) => props.theme.colors.mainColor};
 `;
