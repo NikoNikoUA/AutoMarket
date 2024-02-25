@@ -1,13 +1,15 @@
-import { Formik } from "formik";
+import { Formik, Field } from "formik";
 import * as Yup from "yup";
 import {
   ButtonSearch,
   Label,
   InputContainer,
   Forma,
-  Input,
+  InputField,
   MilageInputs,
 } from "./Filter.styled";
+import { useDispatch } from "react-redux";
+import { filterValue } from "../../../redux/filter/filterSlice";
 
 const schema = Yup.object().shape({
   make: Yup.string(),
@@ -15,7 +17,8 @@ const schema = Yup.object().shape({
   mileage: Yup.number(),
 });
 
-const Filter = ({ onSubmit }) => {
+const Filter = () => {
+  const dispatch = useDispatch();
   return (
     <Formik
       initialValues={{
@@ -27,14 +30,29 @@ const Filter = ({ onSubmit }) => {
       validationSchema={schema}
       onSubmit={(values, action) => {
         console.log(values);
-        onSubmit(values);
+        dispatch(filterValue(values));
+
         action.resetForm();
       }}
     >
       <Forma>
         <InputContainer>
           <Label htmlFor="make">Car brand</Label>
-          <Input
+          <Field
+            style={{
+              borderRadius: "14px",
+
+              width: "224px",
+              height: "48px",
+              backgroundColor: "#f7f7fb",
+              border: "none",
+              fontWeight: "500",
+              fontSize: "18px",
+
+              lineHeight: "1.11111",
+              color: "#121417",
+              padding: "14px 89px 14px 18px",
+            }}
             className="inputBrand"
             name="make"
             as="select"
@@ -62,12 +80,12 @@ const Filter = ({ onSubmit }) => {
             <option value="chrysler">Chrysler</option>
             <option value="kia">Kia</option>
             <option value="land rover">Land Rover</option>
-          </Input>
+          </Field>
         </InputContainer>
 
         <InputContainer>
           <Label htmlFor="price">Price/ 1 hour</Label>
-          <Input
+          <InputField
             className="inputPrice"
             // as="select"
             name="price"
@@ -78,13 +96,13 @@ const Filter = ({ onSubmit }) => {
         <InputContainer>
           <Label htmlFor="mileageFrom">Car mileage / km</Label>
           <MilageInputs>
-            <Input
+            <InputField
               className="inputFrom"
               name="mileageFrom"
               placeholder="From"
             />
             <Label htmlFor="mileageTo"></Label>
-            <Input className="inputTo" name="mileageTo" placeholder="To" />
+            <InputField className="inputTo" name="mileageTo" placeholder="To" />
           </MilageInputs>
         </InputContainer>
 

@@ -41,13 +41,8 @@ const Catalog = () => {
     }
   };
 
-  const onSubmit = (value) => {
-    dispatch(filterValue(value));
-    setPage(1);
-  };
-
   const visibleCarsMake =
-    filter.make && filter.make !== "all"
+    filter?.make && filter?.make !== "all"
       ? cars.filter(
           (car) => car.make.toLowerCase() === filter.make.toLowerCase()
         )
@@ -58,7 +53,7 @@ const Catalog = () => {
     <Container>
       {isLoading && !error && <Loader />}
       <ComponentsContainer>
-        <Filter onSubmit={onSubmit} />
+        <Filter />
         <CarsList visibleCarsMake={visibleCarsMake} />
         {loadMore && page < totalNumberOfPages && (
           <LoadMore clickLoadMore={clickLoadMore} />

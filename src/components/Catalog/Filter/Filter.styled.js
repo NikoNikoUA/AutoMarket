@@ -49,7 +49,7 @@ export const Forma = styled(Form)`
   gap: 18px;
 `;
 
-export const Input = styled(Field)`
+export const InputField = styled.input`
   border-radius: 14px;
   /* padding: 14px 89px 14px 18px; */
   width: 224px;
@@ -63,11 +63,11 @@ export const Input = styled(Field)`
   line-height: 1.11111;
   color: #121417;
 
-  &.inputBrand {
+  /* &.inputBrand {
     padding: 14px 89px 14px 18px;
     width: 224px;
     height: 48px;
-  }
+  } */
 
   &.inputPrice {
     padding: 14px 18px;
