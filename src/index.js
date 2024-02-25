@@ -4,8 +4,9 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { GlobalStyle } from "../src/GlobalStyles";
 import { ThemeProvider } from "styled-components";
-import { store } from "../src/redux/store";
+import { persistor, store } from "../src/redux/store";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 
 const theme = {
   colors: {
@@ -20,9 +21,11 @@ root.render(
     <ThemeProvider theme={theme}>
       <Provider store={store}>
         <GlobalStyle />
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <PersistGate loading={null} persistor={persistor}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </PersistGate>
       </Provider>
     </ThemeProvider>
   </React.StrictMode>
