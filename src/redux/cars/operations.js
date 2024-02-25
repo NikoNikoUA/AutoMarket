@@ -7,16 +7,13 @@ export const LIMIT = 12;
 
 export const fetchCars = createAsyncThunk(
   "cars/fetchCars",
-  async (
-    _,
-    thunkAPI,
-    params = {
-      page: 1,
-    }
-  ) => {
+  async (_, thunkAPI) => {
     try {
-      const response = await axios.get(`/cars?${params}&${LIMIT}`);
-      console.log(response.data);
+      const response = await axios.get("/cars", {
+        params: {
+          page: 1,
+        },
+      });
 
       return response.data;
     } catch (error) {

@@ -25,16 +25,13 @@ const Catalog = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("Fetching page:", page);
     dispatch(fetchCars(page));
   }, [dispatch, page]);
 
   const totalNumberOfPages = Math.ceil(cars.length / LIMIT);
-  console.log("Total number of pages:", totalNumberOfPages);
 
   const clickLoadMore = () => {
-    console.log("Click Load More. Current page:", page);
-    if (page === totalNumberOfPages - 1) {
+    if (page < totalNumberOfPages) {
       setLoadMore(true);
     }
     setPage(page + 1);
@@ -46,7 +43,6 @@ const Catalog = () => {
           (car) => car.make.toLowerCase() === filter.make.toLowerCase()
         )
       : cars;
-  console.log(visibleCarsMake);
 
   return (
     <Container>

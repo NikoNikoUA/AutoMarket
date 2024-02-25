@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Form, Field } from "formik";
+import { Form } from "formik";
 
 export const ButtonSearch = styled.button`
   display: flex;
@@ -61,7 +61,6 @@ export const InputField = styled.input`
 
   line-height: 1.11111;
   color: #121417;
-
 
   &.inputPrice {
     padding: 14px 18px;
