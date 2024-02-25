@@ -19,7 +19,7 @@ const Filter = ({ onSubmit }) => {
   return (
     <Formik
       initialValues={{
-        make: "all",
+        make: "",
         price: "",
         mileageFrom: "",
         mileageTo: "",

@@ -20,7 +20,7 @@ root.render(
     <ThemeProvider theme={theme}>
       <Provider store={store}>
         <GlobalStyle />
-        <BrowserRouter basename="/AutoMarket">
+        <BrowserRouter>
           <App />
         </BrowserRouter>
       </Provider>
