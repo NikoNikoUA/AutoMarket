@@ -36,7 +36,7 @@ export const Span = styled.span`
 
 export const Container = styled.div`
   min-width: 1440px;
-  padding: 150px 128px;
+  padding: 100px 128px;
   display: flex;
   justify-content: center;
   flex-direction: column;

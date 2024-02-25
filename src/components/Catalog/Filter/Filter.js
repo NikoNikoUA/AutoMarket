@@ -53,7 +53,6 @@ const Filter = () => {
               color: "#121417",
               padding: "14px 89px 14px 18px",
             }}
-            className="inputBrand"
             name="make"
             as="select"
             placeholder="Enter the text"

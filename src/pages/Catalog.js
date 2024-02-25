@@ -9,7 +9,6 @@ import { CarsList } from "../components/Catalog/CarsList/CarsList";
 import { Loader } from "../../src/components/Loader/Loader";
 import { Container, ComponentsContainer } from "../../src/Container.styled";
 import Filter from "../../src/components/Catalog/Filter/Filter";
-import { filterValue } from "../../src/redux/filter/filterSlice";
 import { useEffect, useState } from "react";
 import { fetchCars, LIMIT } from "../../src/redux/cars/operations";
 import { LoadMore } from "../../src/components/LoadMore/LoadMore";
@@ -35,10 +34,10 @@ const Catalog = () => {
 
   const clickLoadMore = () => {
     console.log("Click Load More. Current page:", page);
-    if (page < totalNumberOfPages) {
+    if (page === totalNumberOfPages - 1) {
       setLoadMore(true);
-      setPage(page + 1);
     }
+    setPage(page + 1);
   };
 
   const visibleCarsMake =

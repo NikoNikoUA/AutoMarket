@@ -51,7 +51,6 @@ export const Forma = styled(Form)`
 
 export const InputField = styled.input`
   border-radius: 14px;
-  /* padding: 14px 89px 14px 18px; */
   width: 224px;
   height: 48px;
   background-color: #f7f7fb;
@@ -63,11 +62,6 @@ export const InputField = styled.input`
   line-height: 1.11111;
   color: #121417;
 
-  /* &.inputBrand {
-    padding: 14px 89px 14px 18px;
-    width: 224px;
-    height: 48px;
-  } */
 
   &.inputPrice {
     padding: 14px 18px;
